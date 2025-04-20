@@ -83,8 +83,8 @@ README.md
 1. Url Live Demo: https://website.crispity.tech/Backend
 
 ## Script Creacion de BD
-Tabla about_us
-
+##Tabla about_us
+```
 CREATE TABLE about_us (
   id INT AUTO_INCREMENT PRIMARY KEY,
   titulo_esp TEXT NOT NULL,
@@ -92,8 +92,9 @@ CREATE TABLE about_us (
   descripcion_esp TEXT NOT NULL,
   descripcion_eng TEXT NOT NULL
 ) ENGINE=InnoDB;
-
-Contenido:
+```
+##Contenido about_us:
+```
 INSERT INTO about_us (titulo_esp, titulo_eng, descripcion_esp, descripcion_eng) VALUES
 ('Servicios de soporte, gestión y diseño de TI altamente personalizados.', 'Highly Tailored IT Design, Management & Support Services.',
  'Acelere la innovación con equipos tecnológicos de clase mundial. Lo conectaremos con un equipo remoto completo de increíbles talentos independientes para todas sus necesidades de desarrollo de software.',
@@ -104,8 +105,9 @@ INSERT INTO about_us (titulo_esp, titulo_eng, descripcion_esp, descripcion_eng) 
 ('Visión', 'Vision',
  'Nos visualizamos como líderes en el campo de la consultoría y desarrollo de software, reconocidos por nuestra excelencia en el servicio al cliente, nuestra capacidad para adaptarnos a las necesidades cambiantes del mercado y nuestra contribución al crecimiento y la transformación digital de las empresas.',
  'We see ourselves as leaders in the field of software consulting and development, recognized for our excellence in customer service, our ability to adapt to changing market needs and our contribution to the growth and digital transformation of companies.');
-
-Tabla Servicios
+```
+##Tabla Servicios
+```
 CREATE TABLE servicios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   titulo_esp TEXT NOT NULL,
@@ -114,8 +116,9 @@ CREATE TABLE servicios (
   descripcion_eng TEXT NOT NULL,
   activo BOOLEAN NOT NULL
 ) ENGINE=InnoDB;
-
-Contenido:
+```
+##Contenido Servicios:
+```
 INSERT INTO servicios (titulo_esp, titulo_eng, descripcion_esp, descripcion_eng, activo) VALUES
 ('Consultoría digital', 'Digital consulting',
  'Identificamos las fallas y conectamos los puntos entre tu negocio y tu estrategia digital. Nuestro equipo experto cuenta con años de experiencia en la definición de estrategias y hojas de ruta en función de tus objetivos específicos.',
@@ -133,7 +136,7 @@ INSERT INTO servicios (titulo_esp, titulo_eng, descripcion_esp, descripcion_eng,
  'Traemos el poder de las soluciones low-code y no-code para ayudar a nuestros clientes a acelerar su salida al mercado y añadir valor. Aumentamos la productividad y la calidad, reduciendo los requisitos de cualificación de los desarrolladores.',
  'We bring the power of low-code and no-code solutions to help our clients accelerate time to market and add value. We increase productivity and quality, reducing developer qualification requirements.',
  1);
-
+```
 
 ## Pruebas
 
