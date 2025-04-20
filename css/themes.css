@@ -1,0 +1,61 @@
+:root {
+    /* Variables existentes */
+    --background-color: #d8d8d8;
+    --text-color: #222;
+    --header-bg: #ffffff;
+    --card-bg: #fff;
+    --card-shadow: 0 4px 18px 0 #00000011;
+    --border-color: #e0e0e0;
+    --hover-color: #007bff;
+    --footer-bg: #dbdbdb;
+    --footer-text: #000000;
+    --hero-overlay: rgba(255, 255, 255, 0.85);
+    --contact-info-bg: #e0e0e0;
+
+    /* Nuevas variables para formularios y cards */
+    --form-bg: #ffffff;
+    --form-border: #cccccc;
+    --form-focus: #006363;
+    --input-bg: #ffffff;
+    --input-text: #333333;
+    --button-bg: #00b8b8;
+    --button-text: #ffffff;
+    --button-hover: #009090;
+    --mobile-menu-bg: #ffffff;
+    --mobile-menu-text: #333333;
+    --card-title-color: #006363;
+    --card-text-color: #333333;
+    --link-color: #007bff;
+    --sombra-color: #e9e9e9d8;
+}
+
+[data-theme="dark"] {
+    /* Variables existentes */
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --header-bg: #2d2d2d;
+    --card-bg: #333333;
+    --card-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.3);
+    --border-color: #444444;
+    --hover-color: #00b8b8;
+    --footer-bg: #2d2d2d;
+    --footer-text: #ffffff;
+    --hero-overlay: rgba(0, 0, 0, 0.85);
+    --contact-info-bg: #333333;
+
+    /* Nuevas variables para modo oscuro */
+    --form-bg: #333333;
+    --form-border: #444444;
+    --form-focus: #00f8f8;
+    --input-bg: #2d2d2d;
+    --input-text: #ffffff;
+    --button-bg: #00b8b8;
+    --button-text: #ffffff;
+    --button-hover: #009090;
+    --mobile-menu-bg: #2d2d2d;
+    --mobile-menu-text: #ffffff;
+    --card-title-color: #00f8f8;
+    --card-text-color: #ffffff;
+    --link-color: #00b8b8;
+    --sombra-color: #1f1f1fd8;
+}

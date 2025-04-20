@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConIngenio: Consultoría y Desarrollo de Software</title>
+    <!-- Hojas de estilo principales -->
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Metadatos para SEO -->
+    <meta name="description" content="ConIngenio: Consultoría y Desarrollo de Software a medida.">
+    <meta name="keywords" content="consultoría, software, desarrollo, tecnología">
+</head>
+<body>
+    <!-- ================= HEADER Y MENÚ PRINCIPAL ================= -->
+    <header>
+      <div class="container">
+          <!-- Logo y nombre de la empresa -->
+          <a class="linkcabecera" href="index.html">
+              <img id="logo" src="img/logob.png" alt="Logo de ConIngenio" class="logo" loading="lazy">
+              ConIngenio
+          </a>
+          <!-- Navegación principal -->
+          <nav>
+              <!-- Botón hamburguesa para menú móvil -->
+              <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">&#9776;</button>
+              <ul id="nav-menu">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="servicio.html">Nuestros Servicios</a></li>
+                  <li><a href="nosotros.html">Nosotros</a></li>
+                  <li><a href="contacto.html">Contáctenos</a></li>
+              </ul>
+          </nav>
+          <!-- Botón para alternar tema claro/oscuro -->
+          <div class="header-buttons">
+              <button id="theme-toggle" aria-label="Cambiar entre tema claro y oscuro">🌙</button>
+          </div>
+      </div>
+    </header>
+
+    <!-- ================= SECCIÓN DE CONTACTO ================= -->
+    <section id="contact">
+      <div class="container">
+        <h2>Contáctenos</h2>
+        <div class="contact-flex">
+          <!-- Formulario de contacto -->
+          <form id="contact-form">
+            <label for="name">Nombre Completo:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="mail">Correo electrónico de contacto:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="service">Seleccione un Servicio:</label>
+            <select id="service" name="service" required>
+              <option value="consultoria">Consultoría Digital</option>
+              <option value="multiexperiencia">Soluciones Multiexperiencia</option>
+              <option value="ecosistemas">Evolución de Ecosistemas</option>
+              <option value="lowcode">Soluciones Low-Code</option>
+              <option value="otro">Otras Consultas</option>
+            </select>
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Enviar</button>
+          </form>
+          <!-- Información de contacto de la empresa -->
+          <div class="contact-info">
+            <h3>Información de Contacto</h3>
+            <p><strong>Dirección:</strong><br>
+            Av. Providencia 1234, Oficina 601<br>
+            Providencia, Santiago, Chile</p>
+            <p><strong>Teléfono:</strong><br>
+            +56 2 1234 5678</p>
+            <p><strong>Web:</strong><br>
+            <a href="https://www.coningenio.cl" target="_blank">www.coningenio.cl</a></p>
+            <p><strong>Email:</strong><br>
+            <a href="mailto:info@coningenio.cl">info@coningenio.cl</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="container">
+        <p>© 2025 ConIngenio. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Script principal de la página -->
+    <script src="js/script.js"></script>
+</body>
+</html>

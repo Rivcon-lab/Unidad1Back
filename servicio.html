@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConIngenio: Consultoría y Desarrollo de Software</title>
+    <!-- Hojas de estilo principales -->
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Metadatos para SEO -->
+    <meta name="description" content="ConIngenio: Consultoría y Desarrollo de Software a medida.">
+    <meta name="keywords" content="consultoría, software, desarrollo, tecnología">
+    <!-- Font Awesome para íconos de servicios -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- ================= HEADER Y MENÚ PRINCIPAL ================= -->
+    <header>
+      <div class="container">
+          <!-- Logo y nombre de la empresa -->
+          <a class="linkcabecera" href="index.html">
+              <img id="logo" src="img/logob.png" alt="Logo de ConIngenio" class="logo" loading="lazy">
+              ConIngenio
+          </a>
+          <!-- Navegación principal -->
+          <nav>
+              <!-- Botón hamburguesa para menú móvil -->
+              <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">&#9776;</button>
+              <ul id="nav-menu">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="servicio.html">Nuestros Servicios</a></li>
+                  <li><a href="nosotros.html">Nosotros</a></li>
+                  <li><a href="contacto.html">Contáctenos</a></li>
+              </ul>
+          </nav>
+          <!-- Botón para alternar tema claro/oscuro -->
+          <div class="header-buttons">
+              <button id="theme-toggle" aria-label="Cambiar entre tema claro y oscuro">🌙</button>
+          </div>
+      </div>
+    </header>
+
+    <!-- ================= SECCIÓN DE SERVICIOS (DINÁMICA) ================= -->
+    <section class="services-section2">
+      <div class="contendor-texto">
+        <h2 class="services-title">Nuestros Servicios</h2>
+        <!-- Mensaje de carga -->
+        <div class="loading" id="loading-msg">Cargando servicios...</div>
+        <!-- Mensaje de error -->
+        <div class="error" id="error-msg" style="display:none;"></div>
+        <!-- Cards dinámicas de servicios -->
+        <div class="services-list" id="services-list"></div>
+      </div>
+    </section>
+    <!-- Script para cargar los servicios dinámicamente -->
+    <script src="js/service.js"></script>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="container">
+        <p>© 2025 ConIngenio. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <!-- Script principal de la página (menú, tema, etc.) -->
+    <script src="js/script.js"></script>
+</body>
+</html>
