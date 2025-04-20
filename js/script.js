@@ -7,18 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const logo = document.getElementById('logo');
     const contactForm = document.getElementById('contact-form');
     const responseDiv = document.getElementById('contact-response'); // Asegúrate de tener este div en tu HTML
-  
+
     // --- CONFIGURACIÓN INICIAL ---
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.body.setAttribute('data-theme', savedTheme);
     themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-  
+
     // --- FUNCIONES DE UTILIDAD ---
     // Función para actualizar el logo según tema y tamaño
     function updateLogo() {
         const currentTheme = document.body.getAttribute('data-theme');
         const isSmall = window.innerWidth <= 600;
-        
+
         // Precargar la imagen antes de cambiarla
         const newImage = new Image();
         const newSrc = currentTheme === 'dark' 
@@ -30,24 +30,24 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         newImage.src = newSrc;
     }
-  
+
     // Función para alternar el tema
     function toggleTheme() {
         const currentTheme = document.body.getAttribute('data-theme');
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         document.body.setAttribute('data-theme', newTheme);
         themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         localStorage.setItem('theme', newTheme);
         updateLogo();
     }
-  
+
     // --- EVENTOS DE NAVEGACIÓN ---
     // Toggle del menú hamburguesa
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
     });
-  
+
     // Cerrar menú al hacer click en enlaces
     const navLinks = document.querySelectorAll('#nav-menu a');
     navLinks.forEach(link => {
@@ -55,17 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.remove('active');
         });
     });
-  
+
     // Cerrar menú al hacer click fuera
     document.addEventListener('click', (event) => {
         const isClickInsideNav = navMenu.contains(event.target);
         const isClickOnToggle = navToggle.contains(event.target);
-        
+
         if (!isClickInsideNav && !isClickOnToggle && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
         }
     });
-  
+
     // --- EVENTOS DE REDIMENSIONAMIENTO Y TEMA ---
     // Manejar redimensionamiento con debounce para mejor rendimiento
     let resizeTimeout;
@@ -78,15 +78,15 @@ document.addEventListener('DOMContentLoaded', function() {
             updateLogo();
         }, 250); // Espera 250ms después del último evento resize
     });
-  
+
     // Evento para cambio de tema
     themeToggle.addEventListener('click', toggleTheme);
-  
+
     // --- MANEJO DEL FORMULARIO DE CONTACTO ---
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-  
+
             // Obtener y limpiar valores
             const formData = {
                 name: document.getElementById('name').value.trim(),
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 service: document.getElementById('service').value.trim(),
                 message: document.getElementById('message').value.trim()
             };
-  
+
             // Validación
             if (Object.values(formData).some(value => !value)) {
                 if (responseDiv) {
@@ -105,16 +105,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 return;
             }
-  
+
             // Enviar datos al backend usando fetch
-            fetch('api/contact/procesar_contacto.php', {
+            fetch('api/index.php?route=contacto', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: new URLSearchParams(formData)
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor: ' + response.status);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (responseDiv) {
                     responseDiv.textContent = data.message;
@@ -135,11 +140,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-  
+
     // --- INICIALIZACIÓN ---
     // Actualizar logo inicial
     updateLogo();
-  
+
     // Precargar todas las versiones del logo para cambios más suaves
     const logoVersions = [
         'img/logob.png',
@@ -151,4 +156,4 @@ document.addEventListener('DOMContentLoaded', function() {
         const img = new Image();
         img.src = src;
     });
-  });
+});

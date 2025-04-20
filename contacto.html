@@ -44,7 +44,7 @@
         <h2>Contáctenos</h2>
         <div class="contact-flex">
           <!-- Formulario de contacto -->
-          <form id="contact-form" action="api/contact/procesar_contacto.php" method="POST">
+          <form id="contact-form" action="api/index.php?route=contacto" method="POST" autocomplete="off">
             <label for="name">Nombre Completo:</label>
             <input type="text" id="name" name="name" required>
             <label for="email">Correo electrónico de contacto:</label>
@@ -61,7 +61,7 @@
             <textarea id="message" name="message" rows="5" required></textarea>
             <button type="submit">Enviar</button>
             <div id="contact-response" style="margin-top: 10px;"></div>
-        </form>
+          </form>
           <!-- Información de contacto de la empresa -->
           <div class="contact-info">
             <h3>Información de Contacto</h3>

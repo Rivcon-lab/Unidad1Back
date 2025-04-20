@@ -27,25 +27,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 
-// Autenticación Bearer para proteger la API
-$headers = getallheaders();
-if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer backcrispity') {
-    http_response_code(401);
-    echo json_encode(['message' => 'No autorizado']);
-    exit;
-}
+// Obtención de la ruta solicitada para el enrutamiento interno
+$route = isset($_GET['route']) ? trim($_GET['route'], '/') : '';
+$method = $_SERVER['REQUEST_METHOD'];
 
 // Inclusión de dependencias principales
 require_once BASE_PATH . '/config/database.php';
 require_once BASE_PATH . '/controllers/ServiciosController.php';
 require_once BASE_PATH . '/controllers/NosotrosController.php';
+require_once BASE_PATH . '/models/Contacto.php'; // Asegúrate de tener este modelo
 
 // Inicialización de la conexión a la base de datos
 $database = new Database();
 $db = $database->getConnection();
-// Obtención de la ruta solicitada para el enrutamiento interno
-$route = isset($_GET['route']) ? trim($_GET['route'], '/') : '';
-$method = $_SERVER['REQUEST_METHOD'];
+
+// Autenticación Bearer para proteger la API (excepto contacto)
+if ($route !== 'contacto') {
+    $headers = getallheaders();
+    if (!isset($headers['Authorization']) || $headers['Authorization'] !== 'Bearer backcrispity') {
+        http_response_code(401);
+        echo json_encode(['message' => 'No autorizado']);
+        exit;
+    }
+}
 
 // Enrutamiento de endpoints según la ruta y el método HTTP
 switch ($route) {
@@ -77,40 +81,75 @@ switch ($route) {
                 }
                 break;
             default:
+                http_response_code(405);
                 echo json_encode(['message' => 'Método no permitido']);
         }
         break;
 
-        case 'nosotros':
-            $nosotrosController = new NosotrosController($db);
-            switch ($method) {
-                case 'GET':
-                    if (isset($_GET['id'])) {
-                        $nosotrosController->getNosotros();
-                    } else {
-                        $nosotrosController->getNosotros();
-                    }
-                    break;
-                case 'POST':
-                    $nosotrosController->createNosotros();
-                    break;
-                case 'PUT':
-                    if (isset($_GET['id'])) {
-                        $nosotrosController->updateNosotros($_GET['id']);
-                    } else {
-                        echo json_encode(['message' => 'ID requerido para actualizar']);
-                    }
-                    break;
-                case 'DELETE':
-                    if (isset($_GET['id'])) {
-                        $nosotrosController->deleteNosotros($_GET['id']);
-                    } else {
-                        echo json_encode(['message' => 'ID requerido para eliminar']);
-                    }
-                    break;
-                default:
-                    echo json_encode(['message' => 'Método no permitido']);
+    case 'nosotros':
+        $nosotrosController = new NosotrosController($db);
+        switch ($method) {
+            case 'GET':
+                $nosotrosController->getNosotros();
+                break;
+            case 'POST':
+                $nosotrosController->createNosotros();
+                break;
+            case 'PUT':
+                if (isset($_GET['id'])) {
+                    $nosotrosController->updateNosotros($_GET['id']);
+                } else {
+                    echo json_encode(['message' => 'ID requerido para actualizar']);
+                }
+                break;
+            case 'DELETE':
+                if (isset($_GET['id'])) {
+                    $nosotrosController->deleteNosotros($_GET['id']);
+                } else {
+                    echo json_encode(['message' => 'ID requerido para eliminar']);
+                }
+                break;
+            default:
+                http_response_code(405);
+                echo json_encode(['message' => 'Método no permitido']);
+        }
+        break;
+
+    case 'contacto':
+        // Solo permite POST para contacto
+        if ($method === 'POST') {
+            // Recibe datos en formato x-www-form-urlencoded o JSON
+            $input = $_POST;
+            if (empty($input)) {
+                $input = json_decode(file_get_contents("php://input"), true);
             }
-            break;
+            $nombre = $input['name'] ?? '';
+            $email = $input['email'] ?? '';
+            $servicio = $input['service'] ?? '';
+            $mensaje = $input['message'] ?? '';
+
+            if (empty($nombre) || empty($email) || empty($servicio) || empty($mensaje)) {
+                echo json_encode(['success' => false, 'message' => 'Todos los campos son obligatorios.']);
+                exit;
+            }
+
+            $contactoModel = new Contacto($db);
+            $result = $contactoModel->crearContacto($nombre, $email, $servicio, $mensaje);
+
+            if ($result) {
+                echo json_encode(['success' => true, 'message' => 'Formulario enviado correctamente.']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Error al guardar los datos.']);
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode(['message' => 'Método no permitido']);
+        }
+        break;
+
+    default:
+        http_response_code(404);
+        echo json_encode(['message' => 'Endpoint no encontrado']);
+        break;
 }
 ?>
