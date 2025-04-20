@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 
-require_once 'config/database.php';
+require_once '../config/database.php';
 
 // Verifica que el método sea POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
   
             // Enviar datos al backend usando fetch
-            fetch('api/procesar_contacto.php', {
+            fetch('api/contact/procesar_contacto.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
