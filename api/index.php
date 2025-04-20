@@ -1,10 +1,31 @@
 <?php
 define('BASE_PATH', dirname(__FILE__));
 
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
+// Lista de orígenes permitidos
+$allowed_origins = [
+    "http://localhost",
+    "http://localhost:80",
+    "http://localhost:8080",
+    "https://website.crispity.tech"
+];
+
+// Detecta el origen de la petición y responde dinámicamente
+if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowed_origins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+    header("Access-Control-Allow-Credentials: true");
+} else {
+    header("Access-Control-Allow-Origin: http://localhost");
+}
+
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization');
 header('Content-Type: application/json; charset=UTF-8');
+
+// Manejar preflight (OPTIONS)
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
 
 // Autenticación Bearer para proteger la API
 $headers = getallheaders();
@@ -22,7 +43,6 @@ require_once BASE_PATH . '/controllers/NosotrosController.php';
 // Inicialización de la conexión a la base de datos
 $database = new Database();
 $db = $database->getConnection();
-
 // Obtención de la ruta solicitada para el enrutamiento interno
 $route = isset($_GET['route']) ? trim($_GET['route'], '/') : '';
 $method = $_SERVER['REQUEST_METHOD'];

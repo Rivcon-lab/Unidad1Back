@@ -15,6 +15,8 @@ Este proyecto consiste en el desarrollo de una API RESTful y una página web par
 - **Comentarios descriptivos** en todo el código para facilitar el mantenimiento.
 
 ## Estructura del proyecto
+
+```
 api/
 │
 ├── config/
@@ -54,7 +56,7 @@ servicio.html
 nosotros.html
 contacto.html
 README.md
-
+```
 ## Endpoints principales
 
 - `GET /api/servicios?lenguaje=esp`  
