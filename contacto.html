@@ -47,20 +47,21 @@
           <form id="contact-form">
             <label for="name">Nombre Completo:</label>
             <input type="text" id="name" name="name" required>
-            <label for="mail">Correo electrónico de contacto:</label>
+            <label for="email">Correo electrónico de contacto:</label>
             <input type="email" id="email" name="email" required>
             <label for="service">Seleccione un Servicio:</label>
             <select id="service" name="service" required>
-              <option value="consultoria">Consultoría Digital</option>
-              <option value="multiexperiencia">Soluciones Multiexperiencia</option>
-              <option value="ecosistemas">Evolución de Ecosistemas</option>
-              <option value="lowcode">Soluciones Low-Code</option>
-              <option value="otro">Otras Consultas</option>
+                <option value="Consultoría Digital">Consultoría Digital</option>
+                <option value="Soluciones Multiexperiencia">Soluciones Multiexperiencia</option>
+                <option value="Evolución de Ecosistemas">Evolución de Ecosistemas</option>
+                <option value="Soluciones Low-Code">Soluciones Low-Code</option>
+                <option value="Otras Consultas">Otras Consultas</option>
             </select>
             <label for="message">Mensaje:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
             <button type="submit">Enviar</button>
-          </form>
+            <div id="contact-response" style="margin-top: 10px;"></div>
+        </form>
           <!-- Información de contacto de la empresa -->
           <div class="contact-info">
             <h3>Información de Contacto</h3>

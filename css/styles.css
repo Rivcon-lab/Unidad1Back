@@ -547,3 +547,8 @@ footer {
     font-size: 1rem;
   }
 }
+#contact-response {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 10px;
+}
