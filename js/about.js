@@ -10,7 +10,7 @@ function cargarAbout() {
     // Configuración de la API y cabeceras
     const headerParams = { 'Authorization': 'Bearer backcrispity' };
     const proxyUrl = "";
-    const apiUrl = "http://192.168.0.49/api/nosotros?lenguaje=esp";
+    const apiUrl = "https://website.crispity.tech/Backend/api/nosotros?lenguaje=esp";
 
     // Solicitud a la API usando fetch
     fetch(proxyUrl + apiUrl, {

@@ -10,7 +10,7 @@ function cargarDatos() {
     // Configuración de la API y cabeceras
     const headerParams = { 'Authorization': 'Bearer backcrispity' };
     const proxyUrl = "";
-    const apiUrl = "http://localhost/api/servicios?lenguaje=esp";
+    const apiUrl = "https://website.crispity.tech/Backend/api/servicios?lenguaje=esp";
 
     const iconMapping = {
         0: 'fa-solid fa-briefcase',         // Primer servicio
